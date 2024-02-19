@@ -19,6 +19,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('name_lengkap');
             $table->text('alamat');
+            $table->enum('role',['admin','petugas','peminjam']);
             $table->rememberToken();
             $table->timestamps();
         });

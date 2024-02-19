@@ -17,7 +17,7 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('auth');
 
 // Route untuk menampilkan form login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');

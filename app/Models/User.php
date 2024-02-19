@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Role;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -24,7 +23,7 @@ class User extends Authenticatable
         'password',
         'name_lengkap',
         'alamat',
-        'role_id',
+        'role',
     ];
 
     /**
@@ -47,8 +46,5 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
+
 }

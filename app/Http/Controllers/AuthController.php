@@ -24,21 +24,8 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Jika berhasil login
-            $user = Auth::user();
-
-            // Periksa apakah pengguna memiliki peran (role) yang valid
-            if ($user->role_id === 1) {
-                return redirect()->route('admin.dashboard');
-            } elseif ($user->role_id === 2) {
-                return redirect()->route('petugas.dashboard');
-            } elseif ($user->role_id === 3) {
-                return redirect()->route('peminjam.dashboard');
-            } else {
-                return redirect()->route('home');
-            }
+            return redirect('/');
         } else {
-            // Jika login gagal
             return back()->withErrors(['email' => 'Invalid credentials']);
         }
     }
@@ -62,7 +49,7 @@ class AuthController extends Controller
             'email' => $validatedData['email'],
             'name_lengkap' => $validatedData['name_lengkap'],
             'alamat' => $validatedData['alamat'],
-            'role_id' => 3, 
+            'role' => 'peminjam', 
         ]);
 
         // Redirect pengguna setelah registrasi
