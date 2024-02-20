@@ -17,16 +17,16 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
-})->middleware('auth');
+})->middleware('auth','useRole:peminjam');
 
 // Route untuk menampilkan form login
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
 
 // Route untuk proses login
 Route::post('/login', [AuthController::class, 'login']);
 
 // Route untuk proses logout
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Route untuk dashboard admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
