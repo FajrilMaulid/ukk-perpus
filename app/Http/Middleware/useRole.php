@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class useRole
 {
-   
+
     public function handle(Request $request, Closure $next,string $role): Response
     {
         if(Auth()->user()->role == $role){

@@ -54,7 +54,7 @@
                 </form>
 
                 <p class="mb-0 mt-2">
-                    <a href="register.html" class="text-center">Buat akun</a>
+                    <a href="{{ url('register') }}" class="text-center">Buat akun</a>
                 </p>
             </div>
             <!-- /.card-body -->
