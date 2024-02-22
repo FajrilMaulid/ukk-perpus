@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BukuController;
 use App\Http\Controllers\AdminController;
 
 /*
@@ -15,37 +16,29 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('auth','useRole:peminjam');
 
-// Route untuk menampilkan form login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
 
-// Route untuk proses login
 Route::post('/login', [AuthController::class, 'login']);
 
-// Route untuk proses logout
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Route untuk dashboard admin
+Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register')->middleware('guest');
+
+Route::post('/register', [AuthController::class, 'register']);
+
 Route::middleware(['auth', 'useRole:admin'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin', [AdminController::class, 'showAdminForm'])->name('admin.dashboard');
+    Route::get('/buku',[BukuController::class, 'index']);
+    Route::get('/buku/create',[BukuController::class, 'create']);
 });
 
-// // Route untuk dashboard petugas
-// Route::middleware(['auth', 'role:petugas'])->group(function () {
-//     Route::get('/petugas/dashboard', [PetugasController::class, 'dashboard'])->name('petugas.dashboard');
-// });
+Route::middleware(['auth', 'useRole:petugas'])->group(function () {
 
-// // Route untuk dashboard peminjam
-// Route::middleware(['auth', 'role:peminjam'])->group(function () {
-//     Route::get('/peminjam/dashboard', [PeminjamController::class, 'dashboard'])->name('peminjam.dashboard');
-// });
-
-// Menampilkan form registrasi
-Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
-
-// Proses registrasi
-Route::post('/register', [AuthController::class, 'register']);
+});
+Route::middleware(['auth', 'useRole:peminjam'])->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+});
 

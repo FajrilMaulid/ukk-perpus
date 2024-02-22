@@ -21,7 +21,7 @@ class useRole
                 return redirect('/petugas');
               }
               if(Auth()->user()->role == "peminjam"){
-                return redirect('/peminjam');
+                return redirect('/');
               }
           }
     }
