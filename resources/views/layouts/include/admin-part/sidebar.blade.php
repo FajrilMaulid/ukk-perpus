@@ -15,7 +15,7 @@
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">Admin</a>
             </div>
         </div>
 
@@ -81,9 +81,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/tables/jsgrid.html" class="nav-link">
+                            <a href="{{ url('/users') }}" class="nav-link">
                                 <i class="fas fa-user nav-icon"></i>
-                                <p>Peminjam</p>
+                                <p>Users</p>
                             </a>
                         </li>
                     </ul>

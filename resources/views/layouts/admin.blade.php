@@ -33,14 +33,14 @@
     <div class="wrapper">
 
         <!-- Preloader -->
-        @include('layouts.include.preloader')
+        @include('layouts.include.admin-part.preloader')
 
         <!-- Navbar -->
-        @include('layouts.include.navadmin')
+        @include('layouts.include.admin-part.navadmin')
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        @include('layouts.include.sidebar')
+        @include('layouts.include.admin-part.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -53,7 +53,7 @@
         </div>
         <!-- /.content-wrapper -->
         
-        @include('layouts.include.footer')
+        @include('layouts.include.admin-part.footer')
         
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
