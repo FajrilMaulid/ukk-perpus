@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PeminjamanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +48,6 @@ Route::middleware(['auth', 'useRole:admin'])->group(function () {
     Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
     Route::get('/buku/create', [BukuController::class, 'create'])->name('buku.create');
     Route::post('/buku', [BukuController::class, 'store'])->name('buku.store');
-    Route::get('/buku/{id}', [BukuController::class, 'show'])->name('buku.show');
     Route::get('/buku/{id}/edit', [BukuController::class, 'edit'])->name('buku.edit');
     Route::put('/buku/{id}', [BukuController::class, 'update'])->name('buku.update');
     Route::get('/buku/{id}/remove-sampul', [BukuController::class, 'removeSampul'])->name('buku.remove_sampul');

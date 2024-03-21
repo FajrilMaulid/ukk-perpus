@@ -3,6 +3,13 @@
 @section('content')
 
 <section class="content">
+    <div class="pt-2">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+    </div>
     <a href="{{ route('users.create') }}" class="btn btn-primary mb-3 mt-3 mx-2">Tambah User</a>
     <div class="col-12">
         <div class="card">

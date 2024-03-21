@@ -24,6 +24,13 @@
             <div class="card-header text-center">
                 <a href="../../index2.html" class="h1"><b>Digital</b>Library</a>
             </div>
+            <div class="pt-2 px-2">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+            </div>
             <div class="card-body">
                 <p class="login-box-msg">Silahkan masukkan akun anda</p>
 

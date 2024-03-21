@@ -3,8 +3,15 @@
 @section('content')
 
 <section class="content">
+    <div class="pt-2">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+    </div>
     <a href="{{ route('buku.create') }}" class="btn btn-primary mb-3 mt-3 mx-2">Tambah Buku</a>
-    <div class="col-12">
+    <div class="col-12">    
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Data Buku</h3>
@@ -42,7 +49,6 @@
                             <td>{{ $buku->tahun_terbit }}</td>
                             <td>{{ $buku->kategori->nama_kategori }}</td>
                             <td>
-                                <a href="{{ route('buku.show', $buku->id) }}" class="btn btn-sm btn-primary">Lihat</a>
                                 <a href="{{ route('buku.edit', $buku->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <form action="{{ route('buku.destroy', $buku->id) }}" method="POST" style="display: inline;">
                                     @csrf
