@@ -24,10 +24,25 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect('/');
-        } else {
-            return back()->withErrors(['email' => 'Invalid credentials']);
+            $user = Auth::user();
+
+            switch ($user->role) {
+                case 'admin':
+                    return redirect()->intended('/admin');
+                    break;
+                
+                // case 'petugas':
+                //     return redirect()->intended('/dashboard');
+                //     break;
+
+                case 'peminjam':
+                default:
+                    return redirect()->intended('/');
+                    break;
+            }
         }
+
+        return redirect()->route('/login')->with('error', 'Login gagal. Pastikan username dan password benar.');
     }
 
     // Sistem Register

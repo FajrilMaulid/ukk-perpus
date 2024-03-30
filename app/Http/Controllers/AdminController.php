@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Buku;
 use App\Models\User;
 use App\Models\Kategori;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,6 +15,7 @@ class AdminController extends Controller
         $bukuCount = Buku::count();
         $kategoriCount = Kategori::count();
         $usersCount = User::count();
-        return view('admin.dashboard', ['buku_count' => $bukuCount, 'kategori_count' => $kategoriCount, 'users_count' => $usersCount]);
+        $peminjamanCount = Peminjaman::count();
+        return view('admin.dashboard', ['buku_count' => $bukuCount, 'kategori_count' => $kategoriCount, 'users_count' => $usersCount, 'peminjaman_count' => $peminjamanCount]);
     }
 }

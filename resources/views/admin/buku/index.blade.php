@@ -17,7 +17,6 @@
                 <h3 class="card-title">Data Buku</h3>
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
-    
                         <div class="input-group-append">
                         </div>
                     </div>
@@ -49,6 +48,7 @@
                             <td>{{ $buku->tahun_terbit }}</td>
                             <td>{{ $buku->kategori->nama_kategori }}</td>
                             <td>
+                                <a href="{{ route('peminjam.show', $buku->id) }}" class="btn btn-sm btn-primary">Lihat</a>
                                 <a href="{{ route('buku.edit', $buku->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <form action="{{ route('buku.destroy', $buku->id) }}" method="POST" style="display: inline;">
                                     @csrf

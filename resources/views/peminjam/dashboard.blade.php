@@ -2,8 +2,26 @@
 
 @section('content')
 
+<style>
+    .product {
+    transition: transform 0.3s ease-in-out;
+    }
+    .product:hover {
+        transform: scale(1.05);
+    }
+</style>
+
 <section class="py-5">
-    
+    <div class="row justify-content-end mb-3 mx-4">
+        <div class="col-md-4">
+            <form action="{{ route('search.books') }}" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Cari buku..." name="query">
+                    <button class="btn btn-outline-primary" type="submit">Cari</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="container px-4 px-lg-5 mt-4">
         <div class="row gx-4 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             @if (is_null($buku))
@@ -13,8 +31,8 @@
                     </div>
                 </div>
             @else
-                @foreach ($buku as $buku)
-                    <div class="col mb-5">
+                @foreach ($buku->sortByDesc('created_at') as $buku)
+                    <div class="col mb-5 product">
                         <div class="card h-100">
                             <!-- Product image-->
                             <div style="height: 385px; overflow: hidden;">
@@ -29,7 +47,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="">Lihat Buku</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ route('peminjam.show', ['id' => $buku->id]) }}">Lihat Buku</a></div>
                             </div>
                         </div>
                     </div>

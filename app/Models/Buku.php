@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Ulasan;
 use App\Models\Kategori;
 use App\Models\Peminjaman;
 use Illuminate\Database\Eloquent\Model;
@@ -16,5 +17,15 @@ class Buku extends Model
     public function kategori()
     {
         return $this->belongsTo(Kategori::class);
+    }
+
+    public function peminjaman()
+    {
+        return $this->hasMany(Peminjaman::class);
+    }
+
+    public function ulasan()
+    {
+        return $this->hasMany(Ulasan::class);
     }
 }

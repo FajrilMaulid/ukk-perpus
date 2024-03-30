@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('ulasan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('buku_id');
-            $table->foreign('buku_id')->references('id')->on('buku');
+            $table->foreign('buku_id')->references('id')->on('buku')->onDelete('cascade')->onUpdate('cascade');
             $table->text('ulasan');
             $table->integer('rating');
             $table->timestamps();

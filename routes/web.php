@@ -5,9 +5,13 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UlasanController;
+use App\Http\Controllers\KoleksiController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\AdminPeminjamanController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +27,12 @@ use App\Http\Controllers\PeminjamanController;
 Route::get('/', [DashboardController::class, 'showUserForm'])->name('peminjam.dashboard');
 
 Route::get('/books/{category}', [DashboardController::class, 'showBooksByCategory'])->name('books.by.category');
+
+Route::get('/search/books', [DashboardController::class, 'searchBooks'])->name('search.books');
+
+Route::get('/show/{id}', [DashboardController::class, 'show'])->name('peminjam.show');
+
+Route::post('/pinjam/{id}', [PeminjamanController::class, 'pinjamBuku'])->name('peminjam.buku');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
 
@@ -60,10 +70,21 @@ Route::middleware(['auth', 'useRole:admin'])->group(function () {
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    Route::get('/peminjaman/create', [AdminPeminjamanController::class, 'createPeminjamanForm'])->name('admin.peminjaman.create');
+    Route::post('/peminjaman/create', [AdminPeminjamanController::class, 'createPeminjaman'])->name('admin.peminjaman.store');
+    Route::get('/peminjaman', [AdminPeminjamanController::class, 'index'])->name('admin.peminjaman.index');
+    Route::get('/ulasan', [UlasanController::class, 'index'])->name('ulasan.index');
+    Route::delete('/ulasan/{id}', [UlasanController::class, 'destroy'])->name('ulasan.destroy');
 });
 
-Route::middleware(['auth', 'useRole:petugas'])->group(function () {
-
+Route::middleware(['auth'])->group(function () {
+    Route::post('/pengembalian/{id}', [PeminjamanController::class, 'kembalikanBuku'])->name('pengembalian.buku');
+    Route::get('/koleksi', [KoleksiController::class, 'index'])->name('koleksi.index');
+    Route::post('/add/comment/{id}', [DashboardController::class, 'addComment'])->name('add.comment');
+    Route::get('/comment/{id}/edit', [DashboardController::class, 'editComment'])->name('comment.edit');
+    Route::put('/comment/{id}/update', [DashboardController::class, 'updateComment'])->name('comment.update');
+    Route::delete('/comment/{id}/delete', [DashboardController::class, 'deleteComment'])->name('comment.delete');
 });
 
 

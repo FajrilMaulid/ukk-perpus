@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Registration Page (v2)</title>
+    <title>Digital Library | Registration</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -21,7 +21,7 @@
     <div class="register-box">
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="../../index2.html" class="h1"><b>Digital</b>Library</a>
+                <a href="{{ url('/') }}" class="h1"><b>Digital</b>Library</a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Register a new membership</p>

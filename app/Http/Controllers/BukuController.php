@@ -36,7 +36,7 @@ class BukuController extends Controller
     {
         $request->validate([
             'judul' => 'required',
-            'sampul' => 'required|image|mimes:jpeg,png,jpg,gif|max:1048',
+            'sampul' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'penulis' => 'required',
             'penerbit' => 'required',
             'tahun_terbit' => 'required|numeric',
