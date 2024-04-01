@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('name_lengkap');
             $table->text('alamat');
             $table->enum('role',['admin','petugas','peminjam']);
+            $table->string('profile_photo')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -1,15 +1,15 @@
-@extends('layouts.admin')
+@extends('layouts.petugas')
 
 @section('content')
 <section class="content pt-3">
     <div class="container pt-3">
         <div class="col-12">    
-            <a href="{{ route('admin.peminjaman.create') }}" class="btn btn-primary mb-3">Tambah Peminjaman</a>
+            <a href="{{ route('petugas.peminjaman.create') }}" class="btn btn-primary mb-3">Tambah Peminjaman</a>
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Daftar Peminjaman</h3>
                     <div class="card-tools">
-                        <form action="{{ route('admin.peminjaman.search') }}" method="GET" class="input-group input-group-sm" style="width: 150px;">
+                        <form action="{{ route('petugas.peminjaman.search') }}" method="GET" class="input-group input-group-sm" style="width: 150px;">
                             <input type="text" name="q" class="form-control float-right" placeholder="Cari...">
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>

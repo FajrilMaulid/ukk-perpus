@@ -6,10 +6,9 @@ use App\Models\Buku;
 use App\Models\Kategori;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
-class BukuController extends Controller
+class PetugasBukuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,7 @@ class BukuController extends Controller
     public function index()
     {
         $buku = Buku::paginate(10);
-        return view('admin.buku.index', compact('buku'));
+        return view('petugas.buku.index', compact('buku'));
     }
 
     /**
@@ -26,7 +25,7 @@ class BukuController extends Controller
     public function create()
     {
         $kategori = Kategori::all();
-        return view('admin.buku.create', ['kategori' => $kategori]);
+        return view('petugas.buku.create', ['kategori' => $kategori]);
     }
 
     /**
@@ -57,15 +56,15 @@ class BukuController extends Controller
         ]);
         $buku->save();
 
-        return redirect('/buku')->with('success', 'Buku berhasil ditambahkan');
+        return redirect('/petugas/buku')->with('success', 'Buku berhasil ditambahkan');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(string $id)
     {
-        
+        //
     }
 
     /**
@@ -75,7 +74,7 @@ class BukuController extends Controller
     {
         $buku = Buku::find($id);
         $kategori = Kategori::all();
-        return view('admin.buku.edit', compact('buku', 'kategori'));
+        return view('petugas.buku.edit', compact('buku', 'kategori'));
     }
 
     /**
@@ -110,7 +109,7 @@ class BukuController extends Controller
 
         $buku->save();
 
-        return redirect()->route('buku.index')->with('success', 'Buku berhasil diperbarui.');
+        return redirect()->route('petugas.buku.index')->with('success', 'Buku berhasil diperbarui.');
     }
 
     public function search(Request $request)
@@ -126,10 +125,10 @@ class BukuController extends Controller
                     ->paginate(10);
         
         if ($buku->isEmpty()) {
-            return redirect()->route('buku.index')->with('error', 'Buku tidak ditemukan.');
+            return redirect()->route('petugas.buku.index')->with('error', 'Buku tidak ditemukan.');
         }
 
-        return view('admin.buku.index', compact('buku'));
+        return view('petugas.buku.index', compact('buku'));
     }
 
     /**
@@ -141,6 +140,6 @@ class BukuController extends Controller
         Storage::delete('public/buku/'.$buku->sampul);
         $buku->delete();
 
-        return redirect('/buku')->with('success', 'Buku berhasil dihapus');
+        return redirect('/petugas/buku')->with('success', 'Buku berhasil dihapus');
     }
 }

@@ -16,11 +16,12 @@
             <div class="card-header">
                 <h3 class="card-title">Data Buku</h3>
                 <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
+                    <form action="{{ route('users.search') }}" method="GET" class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="q" class="form-control float-right" placeholder="Cari user...">
                         <div class="input-group-append">
-                            
+                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <!-- /.card-header -->
@@ -38,17 +39,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $user)
+                        @foreach ($user as $item)
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->username }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->name_lengkap }}</td>
-                            <td>{{ $user->alamat }}</td>
-                            <td>{{ $user->role }}</td>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->username }}</td>
+                            <td>{{ $item->email }}</td>
+                            <td>{{ $item->name_lengkap }}</td>
+                            <td>{{ $item->alamat }}</td>
+                            <td>{{ $item->role }}</td>
                             <td>
-                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
+                                <a href="{{ route('users.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <form action="{{ route('users.destroy', $item->id) }}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</button>
@@ -62,6 +63,9 @@
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
+    </div>
+    <div class="d-flex justify-content-center">
+        {{ $user->render('pagination.custom-pagination') }}
     </div>
 </section>
 

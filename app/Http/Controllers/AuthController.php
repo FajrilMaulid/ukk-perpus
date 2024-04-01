@@ -31,9 +31,9 @@ class AuthController extends Controller
                     return redirect()->intended('/admin');
                     break;
                 
-                // case 'petugas':
-                //     return redirect()->intended('/dashboard');
-                //     break;
+                case 'petugas':
+                    return redirect()->intended('/petugas');
+                    break;
 
                 case 'peminjam':
                 default:

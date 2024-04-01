@@ -12,8 +12,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('admin.user.index', compact('users'));
+        $user = User::paginate(10);
+        return view('admin.user.index', compact('user'));
     }
 
     /**
@@ -94,6 +94,23 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('users.index')->with('success', 'User berhasil diperbarui');
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
+        $user = User::where('username', 'LIKE', "%$query%")
+                    ->orWhere('email', 'LIKE', "%$query%")
+                    ->orWhere('alamat', 'LIKE', "%$query%")
+                    ->orWhere('name_lengkap', 'LIKE', "%$query%")
+                    ->orWhere('role', 'LIKE', "%$query%")
+                    ->paginate(10);
+        
+        if ($user->isEmpty()) {
+            return redirect()->route('users.index')->with('error', 'User tidak ditemukan.');
+        }
+
+        return view('admin.user.index', compact('user'));
     }
 
     /**

@@ -16,26 +16,26 @@
                 </li>
             </ul>
             @auth
-            <form action="" class="d-flex">
+            <form action="{{ route('profile.index') }}" class="d-flex p-1">
                 <button class="btn btn-outline-dark" type="submit">
                     <i class="bi bi-person-fill"></i>
                     Profile
                 </button>
             </form>
-            <form action="{{ route('logout') }}" class="d-flex mx-2">
+            <form action="{{ route('logout') }}" class="d-flex p-1">
                 <button class="btn btn-outline-dark" type="submit">
                     <i class="bi bi-door-open-fill"></i>
                     Logout
                 </button>
             </form>
             @else
-            <form action="{{ route('login') }}" class="d-flex">
+            <form action="{{ route('login') }}" class="d-flex p-1">
                 <button class="btn btn-outline-dark" type="submit">
                     <i class="bi bi-person-fill"></i>
                     Login
                 </button>
             </form>
-            <form action="{{ route('register') }}" class="d-flex mx-2">
+            <form action="{{ route('register') }}" class="d-flex p-1">
                 <button class="btn btn-outline-dark" type="submit">
                     <i class="bi bi-person-plus-fill"></i>
                     Register

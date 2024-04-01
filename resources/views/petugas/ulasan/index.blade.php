@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.petugas')
 
 @section('content')
 
@@ -38,7 +38,7 @@
                                 <td>{{ $item->ulasan }}</td>
                                 <td>{{ $item->rating }}</td>
                                 <td>
-                                <form action="{{ route('ulasan.destroy', $item->id) }}" method="POST" style="display: inline;">
+                                <form action="{{ route('petugas.ulasan.destroy', $item->id) }}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</button>

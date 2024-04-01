@@ -3,7 +3,7 @@
     <a href="index3.html" class="brand-link">
         <img src="{{ asset('AdminLTE/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Admin Page</span>
+        <span class="brand-text font-weight-light">Petugas Page</span>
     </a>
 
     <!-- Sidebar -->
@@ -15,7 +15,7 @@
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Admin</a>
+                <a href="#" class="d-block">Petugas</a>
             </div>
         </div>
 
@@ -36,7 +36,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="{{ url('/admin') }}" class="nav-link">
+                    <a href="{{ url('/petugas') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/peminjaman') }}" class="nav-link">
+                    <a href="{{ url('/petugas/peminjaman') }}" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Peminjaman
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/ulasan') }}" class="nav-link">
+                    <a href="{{ url('/petugas/ulasan') }}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Ulasan
@@ -69,21 +69,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('/buku') }}" class="nav-link">
+                            <a href="{{ url('/petugas/buku') }}" class="nav-link">
                                 <i class="fas fa-book nav-icon"></i>
                                 <p>Buku</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/kategori') }}" class="nav-link">
+                            <a href="{{ url('/petugas/kategori') }}" class="nav-link">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Kategori</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/users') }}" class="nav-link">
-                                <i class="fas fa-user nav-icon"></i>
-                                <p>Users</p>
                             </a>
                         </li>
                     </ul>

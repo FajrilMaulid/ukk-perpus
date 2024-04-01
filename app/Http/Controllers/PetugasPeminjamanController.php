@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
-use App\Models\Koleksi;
 use App\Models\User;
-use App\Models\Peminjaman;
 use App\Models\Ulasan;
+use App\Models\Koleksi;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 
-class AdminPeminjamanController extends Controller
+class PetugasPeminjamanController extends Controller
 {
     public function createPeminjamanForm()
     {
         $users = User::all();
         $buku = Buku::all();
 
-        return view('admin.peminjaman.create', compact('users', 'buku'));
+        return view('petugas.peminjaman.create', compact('users', 'buku'));
     }
 
     public function createPeminjaman(Request $request)
@@ -47,7 +47,7 @@ class AdminPeminjamanController extends Controller
         ]);
 
         // Redirect dengan pesan sukses
-        return redirect()->route('admin.peminjaman.index')->with('success', 'Peminjaman berhasil.');
+        return redirect()->route('petugas.peminjaman.index')->with('success', 'Peminjaman berhasil.');
     }
 
     public function search(Request $request)
@@ -56,10 +56,10 @@ class AdminPeminjamanController extends Controller
         $peminjaman = Peminjaman::where('status_peminjaman', 'LIKE', "%$query%")->paginate(10);
         
         if ($peminjaman->isEmpty()) {
-            return redirect()->route('admin.peminjaman.index')->with('error', 'User tidak ditemukan.');
+            return redirect()->route('petugas.peminjaman.index')->with('error', 'User tidak ditemukan.');
         }
 
-        return view('admin.peminjaman.index', compact('peminjaman'));
+        return view('petugas.peminjaman.index', compact('peminjaman'));
     }
 
     public function index()
@@ -67,6 +67,6 @@ class AdminPeminjamanController extends Controller
         // Ambil data peminjaman untuk ditampilkan di halaman index
         $peminjaman = Peminjaman::paginate(10);
 
-        return view('admin.peminjaman.index', compact('peminjaman'));
+        return view('petugas.peminjaman.index', compact('peminjaman'));
     }
 }

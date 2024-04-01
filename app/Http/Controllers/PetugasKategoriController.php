@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
-class KategoriController extends Controller
+class PetugasKategoriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class KategoriController extends Controller
     public function index()
     {
         $kategori = Kategori::paginate(10);
-        return view('admin.kategori.index', compact('kategori'));
+        return view('petugas.kategori.index', compact('kategori'));
     }
 
     /**
@@ -21,9 +21,8 @@ class KategoriController extends Controller
      */
     public function create()
     {
-
         $kategori = Kategori::all();
-        return view('admin.kategori.create', compact('kategori'));
+        return view('petugas.kategori.create', compact('kategori'));
     }
 
     /**
@@ -37,7 +36,7 @@ class KategoriController extends Controller
 
         Kategori::create($request->all());
 
-        return redirect()->route('kategori.index')
+        return redirect()->route('petugas.kategori.index')
             ->with('success', 'Kategori berhasil ditambahkan.');
     }
 
@@ -47,7 +46,7 @@ class KategoriController extends Controller
     public function show(string $id)
     {
         $kategori = Kategori::findOrFail($id);
-        return view('admin.kategori.show', compact('kategori'));
+        return view('petugas.kategori.show', compact('kategori'));
     }
 
     /**
@@ -56,7 +55,7 @@ class KategoriController extends Controller
     public function edit(string $id)
     {
         $kategori = Kategori::findOrFail($id);
-        return view('admin.kategori.edit', compact('kategori'));
+        return view('petugas.kategori.edit', compact('kategori'));
     }
 
     /**
@@ -71,7 +70,7 @@ class KategoriController extends Controller
         $kategori = Kategori::findOrFail($id);
         $kategori->update($request->all());
 
-        return redirect()->route('kategori.index')
+        return redirect()->route('petugas.kategori.index')
             ->with('success', 'Kategori berhasil diperbarui.');
     }
 
@@ -81,10 +80,10 @@ class KategoriController extends Controller
         $kategori = Kategori::where('nama_kategori', 'LIKE', "%$query%")->paginate(10);
         
         if ($kategori->isEmpty()) {
-            return redirect()->route('kategori.index')->with('error', 'Kategori tidak ditemukan.');
+            return redirect()->route('petugas.kategori.index')->with('error', 'Kategori tidak ditemukan.');
         }
 
-        return view('admin.kategori.index', compact('kategori'));
+        return view('petugas.kategori.index', compact('kategori'));
     }
 
     /**
@@ -95,7 +94,7 @@ class KategoriController extends Controller
         $kategori = Kategori::findOrFail($id);
         $kategori->delete();
 
-        return redirect()->route('kategori.index')
+        return redirect()->route('petugas.kategori.index')
             ->with('success', 'Kategori berhasil dihapus.');
     }
 }

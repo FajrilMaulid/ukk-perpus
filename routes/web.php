@@ -7,10 +7,16 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UlasanController;
 use App\Http\Controllers\KoleksiController;
+use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\PetugasBukuController;
+use App\Http\Controllers\PetugasUlasanController;
 use App\Http\Controllers\AdminPeminjamanController;
+use App\Http\Controllers\PetugasKategoriController;
+use App\Http\Controllers\PetugasPeminjamanController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -48,6 +54,7 @@ Route::middleware(['auth', 'useRole:admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'showAdminForm'])->name('admin.dashboard');
 
     Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
+    Route::get('/kategori/search', [KategoriController::class, 'search'])->name('kategori.search');
     Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
     Route::post('/kategori', [KategoriController::class, 'store'])->name('kategori.store');
     Route::get('/kategori/{id}', [KategoriController::class, 'show'])->name('kategori.show');
@@ -56,6 +63,7 @@ Route::middleware(['auth', 'useRole:admin'])->group(function () {
     Route::delete('/kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
 
     Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
+    Route::get('/buku/search', [BukuController::class, 'search'])->name('buku.search');
     Route::get('/buku/create', [BukuController::class, 'create'])->name('buku.create');
     Route::post('/buku', [BukuController::class, 'store'])->name('buku.store');
     Route::get('/buku/{id}/edit', [BukuController::class, 'edit'])->name('buku.edit');
@@ -64,6 +72,7 @@ Route::middleware(['auth', 'useRole:admin'])->group(function () {
     Route::delete('/buku/{id}', [BukuController::class, 'destroy'])->name('buku.destroy');
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
@@ -74,11 +83,44 @@ Route::middleware(['auth', 'useRole:admin'])->group(function () {
     Route::get('/peminjaman/create', [AdminPeminjamanController::class, 'createPeminjamanForm'])->name('admin.peminjaman.create');
     Route::post('/peminjaman/create', [AdminPeminjamanController::class, 'createPeminjaman'])->name('admin.peminjaman.store');
     Route::get('/peminjaman', [AdminPeminjamanController::class, 'index'])->name('admin.peminjaman.index');
+    Route::get('/peminjaman/search', [AdminPeminjamanController::class, 'search'])->name('admin.peminjaman.search');
     Route::get('/ulasan', [UlasanController::class, 'index'])->name('ulasan.index');
     Route::delete('/ulasan/{id}', [UlasanController::class, 'destroy'])->name('ulasan.destroy');
 });
 
+Route::middleware(['auth', 'useRole:petugas'])->group(function () {
+    Route::get('/petugas', [PetugasController::class, 'showPetugasForm'])->name('petugas.dashboard');
+
+    Route::get('/petugas/kategori', [PetugasKategoriController::class, 'index'])->name('petugas.kategori.index');
+    Route::get('/petugas/kategori/search', [PetugasKategoriController::class, 'search'])->name('petugas.kategori.search');
+    Route::get('/petugas/kategori/create', [PetugasKategoriController::class, 'create'])->name('petugas.kategori.create');
+    Route::post('/petugas/kategori', [PetugasKategoriController::class, 'store'])->name('petugas.kategori.store');
+    Route::get('/petugas/kategori/{id}', [PetugasKategoriController::class, 'show'])->name('petugas.kategori.show');
+    Route::get('/petugas/kategori/{id}/edit', [PetugasKategoriController::class, 'edit'])->name('petugas.kategori.edit');
+    Route::put('/petugas/kategori/{id}', [PetugasKategoriController::class, 'update'])->name('petugas.kategori.update');
+    Route::delete('/petugas/kategori/{id}', [PetugasKategoriController::class, 'destroy'])->name('petugas.kategori.destroy');
+
+    Route::get('/petugas/buku', [PetugasBukuController::class, 'index'])->name('petugas.buku.index');
+    Route::get('/petugas/buku/search', [PetugasBukuController::class, 'search'])->name('petugas.buku.search');
+    Route::get('/petugas/buku/create', [PetugasBukuController::class, 'create'])->name('petugas.buku.create');
+    Route::post('/petugas/buku', [PetugasBukuController::class, 'store'])->name('petugas.buku.store');
+    Route::get('/petugas/buku/{id}/edit', [PetugasBukuController::class, 'edit'])->name('petugas.buku.edit');
+    Route::put('/petugas/buku/{id}', [PetugasBukuController::class, 'update'])->name('petugas.buku.update');
+    Route::get('/petugas/buku/{id}/remove-sampul', [PetugasBukuController::class, 'removeSampul'])->name('petugas.buku.remove_sampul');
+    Route::delete('/petugas/buku/{id}', [PetugasBukuController::class, 'destroy'])->name('petugas.buku.destroy');
+
+    Route::get('/petugas/peminjaman/create', [PetugasPeminjamanController::class, 'createPeminjamanForm'])->name('petugas.peminjaman.create');
+    Route::post('/petugas/peminjaman/create', [PetugasPeminjamanController::class, 'createPeminjaman'])->name('petugas.peminjaman.store');
+    Route::get('/petugas/peminjaman', [PetugasPeminjamanController::class, 'index'])->name('petugas.peminjaman.index');
+    Route::get('/petugas/peminjaman/search', [PetugasPeminjamanController::class, 'search'])->name('petugas.peminjaman.search');
+    Route::get('/petugas/ulasan', [PetugasUlasanController::class, 'index'])->name('petugas.ulasan.index');
+    Route::delete('/petugas/ulasan/{id}', [PetugasUlasanController::class, 'destroy'])->name('petugas.ulasan.destroy');
+});
+
 Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.index');
+    Route::post('/profile/upload-photo', [ProfileController::class, 'uploadPhoto'])->name('profile.upload-photo');
+    Route::put('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
     Route::post('/pengembalian/{id}', [PeminjamanController::class, 'kembalikanBuku'])->name('pengembalian.buku');
     Route::get('/koleksi', [KoleksiController::class, 'index'])->name('koleksi.index');
     Route::post('/add/comment/{id}', [DashboardController::class, 'addComment'])->name('add.comment');

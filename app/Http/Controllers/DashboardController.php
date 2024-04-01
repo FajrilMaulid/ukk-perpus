@@ -8,12 +8,13 @@ use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class DashboardController extends Controller
 {
     public function showUserForm()
     {
-        $buku = Buku::all();
+        $buku = Buku::paginate(12);
         $kategori = Kategori::all();
         
         if ($buku->isEmpty()) {
@@ -27,7 +28,7 @@ class DashboardController extends Controller
     {
         $buku = Buku::whereHas('kategori', function($query) use ($category) {
             $query->where('nama_kategori', $category);
-        })->get();
+        })->paginate(12);
     
         if ($buku->isEmpty()) {
             $buku = null; 
@@ -39,7 +40,7 @@ class DashboardController extends Controller
     public function searchBooks(Request $request)
     {
         $query = $request->input('query');
-        $buku = Buku::where('judul', 'LIKE', "%$query%")->get();
+        $buku = Buku::where('judul', 'LIKE', "%$query%")->paginate(12);
 
         if ($buku->isEmpty()) {
             $buku = null; 
@@ -50,6 +51,7 @@ class DashboardController extends Controller
 
     public function show($id)
     {
+        $user = Auth::user();
         $buku = Buku::findOrfail($id);
         $kategori = Kategori::all();
 

@@ -63,7 +63,7 @@
                             <form action="{{ route('add.comment', ['id' => $buku->id]) }}" method="POST" class="mt-3">
                                 @csrf
                                 <div class="mt-2 d-flex flex-row align-items-center p-3 form-color">
-                                    <img src="{{ asset('DetailPeminjaman/assets/default.png') }}" width="40" height="40" class="rounded-circle m-2">
+                                    <img src="{{ Auth::user()->profile_photo ? asset('storage/' . Auth::user()->profile_photo) : asset('DetailPeminjaman/assets/default.png') }}" width="40" height="40" class="rounded-circle m-2">
                                     <input type="text" name="comment" class="form-control" placeholder="Masukkan komentar Anda...">
                                     <button type="submit" class="btn btn-primary ml-2 m-1">Kirim</button>
                                 </div>
@@ -71,7 +71,7 @@
                             @foreach($ulasan->sortByDesc('created_at') as $ulasanBuku)
                             <div class="mt-2">
                                 <div class="d-flex flex-row p-3">
-                                    <img src="{{ asset('DetailPeminjaman/assets/default.png') }}" width="40" height="40" class="rounded-circle m-2">
+                                    <img src="{{ $ulasanBuku->user->profile_photo ? asset('storage/' . $ulasanBuku->user->profile_photo) : asset('DetailPeminjaman/assets/default.png') }}" width="40" height="40" class="rounded-circle m-2">
                                     <div class="w-100">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex flex-row align-items-center">{{$ulasanBuku->user->name_lengkap}}</div>

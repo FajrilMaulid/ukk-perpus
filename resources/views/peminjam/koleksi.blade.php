@@ -123,7 +123,7 @@
         <h3 class="text-center mt-3">Koleksi Pribadi</h3>
         <div class="container">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 mt-5">
-                @forelse($collection as $item)
+                @forelse($collection->sortByDesc('created_at') as $item)
                     <div class="col mb-5 product">
                         <div class="card shadow-small">
                             <div class="card-body">
