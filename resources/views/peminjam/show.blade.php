@@ -63,7 +63,11 @@
                             <form action="{{ route('add.comment', ['id' => $buku->id]) }}" method="POST" class="mt-3">
                                 @csrf
                                 <div class="mt-2 d-flex flex-row align-items-center p-3 form-color">
-                                    <img src="{{ Auth::user()->profile_photo ? asset('storage/' . Auth::user()->profile_photo) : asset('DetailPeminjaman/assets/default.png') }}" width="40" height="40" class="rounded-circle m-2">
+                                    @if (Auth::check() && Auth::user()->profile_photo)
+                                        <img src="{{ asset('storage/' . Auth::user()->profile_photo) }}" width="40" height="40" class="rounded-circle m-2">
+                                    @else
+                                        <img src="{{ asset('DetailPeminjaman/assets/default.png') }}" width="40" height="40" class="rounded-circle m-2">
+                                    @endif
                                     <input type="text" name="comment" class="form-control" placeholder="Masukkan komentar Anda...">
                                     <button type="submit" class="btn btn-primary ml-2 m-1">Kirim</button>
                                 </div>

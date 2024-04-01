@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use App\Models\User;
-use App\Models\Ulasan;
 use App\Models\Koleksi;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Date;
 
 class PetugasPeminjamanController extends Controller
 {
@@ -68,5 +69,15 @@ class PetugasPeminjamanController extends Controller
         $peminjaman = Peminjaman::paginate(10);
 
         return view('petugas.peminjaman.index', compact('peminjaman'));
+    }
+
+    public function exportPdf()
+    {        
+        $peminjaman = Peminjaman::all();
+        $pdf = Pdf::loadView('pdf.export-peminjaman', ['peminjaman' => $peminjaman])->setOption(['defaultFont' => 'sans-serif']);
+        // Membuat nama file PDF dengan waktu saat ini
+        $fileName = 'export-peminjaman-' . Date::now()->format('Y-m-d_H-i-s') . '.pdf';
+        
+        return $pdf->download($fileName);
     }
 }

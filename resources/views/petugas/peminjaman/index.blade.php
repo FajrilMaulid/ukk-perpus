@@ -5,6 +5,7 @@
     <div class="container pt-3">
         <div class="col-12">    
             <a href="{{ route('petugas.peminjaman.create') }}" class="btn btn-primary mb-3">Tambah Peminjaman</a>
+            <a href="{{ route('petugas.peminjaman.exportPdf') }}" class="btn btn-danger mb-3">Export Data</a>
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Daftar Peminjaman</h3>

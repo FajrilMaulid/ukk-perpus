@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
-use App\Models\Ulasan;
 use App\Models\User;
+use App\Models\Ulasan;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Date;
 
 class UlasanController extends Controller
 {
@@ -16,6 +18,16 @@ class UlasanController extends Controller
         $user = User::all();
 
         return view('admin.ulasan.index', compact('ulasan'));
+    }
+
+    public function exportPdf()
+    {        
+        $ulasan = Ulasan::all();
+        $pdf = Pdf::loadView('pdf.export-ulasan', ['ulasan' => $ulasan])->setOption(['defaultFont' => 'sans-serif']);
+        // Membuat nama file PDF dengan waktu saat ini
+        $fileName = 'export-ulasanr-' . Date::now()->format('Y-m-d_H-i-s') . '.pdf';
+        
+        return $pdf->download($fileName);
     }
 
     public function destroy(string $id)

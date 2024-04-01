@@ -26,7 +26,7 @@
                             <div style="width: 150px; height: 155px; overflow: hidden; border: 3px solid #f8f9fa;">
                                 <img src="{{ asset($user->profile_photo ? 'storage/' . $user->profile_photo : 'DetailPeminjaman/assets/default.png') }}"
                                     alt="Foto Profil" class="img-fluid"
-                                    style="width: 100%; height: 100%; object-fit: cover; z-index: 1;">
+                                    style="width: 100%; height: 100%; object-fit: cover; z-index: 1; background-color: #f8f9fa;">
                             </div>
                             <button type="button" class="btn btn-outline-dark mt-2" data-bs-toggle="modal"
                                 data-bs-target="#editProfileModal" style="z-index: 1;">

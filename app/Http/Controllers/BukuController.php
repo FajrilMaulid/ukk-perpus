@@ -6,6 +6,8 @@ use App\Models\Buku;
 use App\Models\Kategori;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -130,6 +132,16 @@ class BukuController extends Controller
         }
 
         return view('admin.buku.index', compact('buku'));
+    }
+
+    public function exportPdf()
+    {        
+        $buku = Buku::all();
+        $pdf = Pdf::loadView('pdf.export-buku', ['buku' => $buku])->setOption(['defaultFont' => 'sans-serif']);
+        // Membuat nama file PDF dengan waktu saat ini
+        $fileName = 'export-buku-' . Date::now()->format('Y-m-d_H-i-s') . '.pdf';
+        
+        return $pdf->download($fileName);
     }
 
     /**

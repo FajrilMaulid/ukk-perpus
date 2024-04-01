@@ -11,6 +11,7 @@
         @endif
     </div>
     <div class="container pt-3">
+        <a href="{{ route('petugas.ulasan.exportPdf') }}" class="btn btn-danger mb-3 mt-3 mx-2">Export Data</a>
         <div class="col-12">    
             <div class="card">
                 <div class="card-header">

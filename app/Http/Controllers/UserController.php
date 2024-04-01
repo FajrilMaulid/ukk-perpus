@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Date;
 
 class UserController extends Controller
 {
@@ -111,6 +113,16 @@ class UserController extends Controller
         }
 
         return view('admin.user.index', compact('user'));
+    }
+
+    public function exportPdf()
+    {        
+        $user = User::all();
+        $pdf = Pdf::loadView('pdf.export-user', ['user' => $user])->setOption(['defaultFont' => 'sans-serif']);
+        // Membuat nama file PDF dengan waktu saat ini
+        $fileName = 'export-user-' . Date::now()->format('Y-m-d_H-i-s') . '.pdf';
+        
+        return $pdf->download($fileName);
     }
 
     /**
