@@ -12,6 +12,7 @@
     </div>
     <a href="{{ route('petugas.buku.create') }}" class="btn btn-primary mb-3 mt-3 mx-2">Tambah Buku</a>
     <a href="{{ route('petugas.buku.exportPdf') }}" class="btn btn-danger mb-3 mt-3">Export Data</a>
+    <a href="{{ route('petugas.buku.exportExcel') }}" class="btn btn-success mb-3 mt-3 mx-2">Export Excel</a>
     <div class="col-12">    
         <div class="card">
             <div class="card-header">

@@ -64,6 +64,7 @@ Route::middleware(['auth', 'useRole:admin'])->group(function () {
     Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
     Route::get('/buku/search', [BukuController::class, 'search'])->name('buku.search');
     Route::get('/buku/export-pdf', [BukuController::class, 'exportPdf'])->name('buku.exportPdf');
+    Route::get('/buku/export-excel', [BukuController::class, 'exportExcel'])->name('buku.exportExcel');
     Route::get('/buku/create', [BukuController::class, 'create'])->name('buku.create');
     Route::post('/buku', [BukuController::class, 'store'])->name('buku.store');
     Route::get('/buku/{id}/edit', [BukuController::class, 'edit'])->name('buku.edit');
@@ -74,6 +75,7 @@ Route::middleware(['auth', 'useRole:admin'])->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
     Route::get('/users/export-pdf', [UserController::class, 'exportPdf'])->name('users.exportPdf');
+    Route::get('/users/export-excel', [UserController::class, 'exportExcel'])->name('users.exportExcel');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
@@ -85,9 +87,11 @@ Route::middleware(['auth', 'useRole:admin'])->group(function () {
     Route::post('/peminjaman/create', [AdminPeminjamanController::class, 'createPeminjaman'])->name('admin.peminjaman.store');
     Route::get('/peminjaman', [AdminPeminjamanController::class, 'index'])->name('admin.peminjaman.index');
     Route::get('/peminjaman/export-pdf', [AdminPeminjamanController::class, 'exportPdf'])->name('admin.peminjaman.exportPdf');
+    Route::get('/peminjaman/export-excel', [AdminPeminjamanController::class, 'exportExcel'])->name('admin.peminjaman.exportExcel');
     Route::get('/peminjaman/search', [AdminPeminjamanController::class, 'search'])->name('admin.peminjaman.search');
     Route::get('/ulasan', [UlasanController::class, 'index'])->name('ulasan.index');
     Route::get('/ulasan/export-pdf', [UlasanController::class, 'exportPdf'])->name('ulasan.exportPdf');
+    Route::get('/ulasan/export-excel', [UlasanController::class, 'exportExcel'])->name('ulasan.exportExcel');
     Route::delete('/ulasan/{id}', [UlasanController::class, 'destroy'])->name('ulasan.destroy');
 });
 
@@ -106,6 +110,7 @@ Route::middleware(['auth', 'useRole:petugas'])->group(function () {
     Route::get('/petugas/buku', [PetugasBukuController::class, 'index'])->name('petugas.buku.index');
     Route::get('/petugas/buku/search', [PetugasBukuController::class, 'search'])->name('petugas.buku.search');
     Route::get('/petugas/buku/export-pdf', [PetugasBukuController::class, 'exportPdf'])->name('petugas.buku.exportPdf');
+    Route::get('/petugas/buku/export-excel', [BukuController::class, 'exportExcel'])->name('petugas.buku.exportExcel');
     Route::get('/petugas/buku/create', [PetugasBukuController::class, 'create'])->name('petugas.buku.create');
     Route::post('/petugas/buku', [PetugasBukuController::class, 'store'])->name('petugas.buku.store');
     Route::get('/petugas/buku/{id}/edit', [PetugasBukuController::class, 'edit'])->name('petugas.buku.edit');
@@ -117,9 +122,11 @@ Route::middleware(['auth', 'useRole:petugas'])->group(function () {
     Route::post('/petugas/peminjaman/create', [PetugasPeminjamanController::class, 'createPeminjaman'])->name('petugas.peminjaman.store');
     Route::get('/petugas/peminjaman', [PetugasPeminjamanController::class, 'index'])->name('petugas.peminjaman.index');
     Route::get('/petugas/peminjaman/export-pdf', [PetugasPeminjamanController::class, 'exportPdf'])->name('petugas.peminjaman.exportPdf');
+    Route::get('/petugas/peminjaman/export-excel', [PetugasPeminjamanController::class, 'exportExcel'])->name('petugas.peminjaman.exportExcel');
     Route::get('/petugas/peminjaman/search', [PetugasPeminjamanController::class, 'search'])->name('petugas.peminjaman.search');
     Route::get('/petugas/ulasan', [PetugasUlasanController::class, 'index'])->name('petugas.ulasan.index');
     Route::get('/petugas/ulasan/export-pdf', [PetugasUlasanController::class, 'exportPdf'])->name('petugas.ulasan.exportPdf');
+    Route::get('/petugas/ulasan/export-excel', [PetugasUlasanController::class, 'exportExcel'])->name('petugas.ulasan.exportExcel');
     Route::delete('/petugas/ulasan/{id}', [PetugasUlasanController::class, 'destroy'])->name('petugas.ulasan.destroy');
 });
 

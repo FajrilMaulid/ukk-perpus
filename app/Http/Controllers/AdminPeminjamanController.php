@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PeminjamanExport;
 use App\Models\Buku;
 use App\Models\User;
 use App\Models\Koleksi;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Date;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminPeminjamanController extends Controller
 {
@@ -79,5 +82,10 @@ class AdminPeminjamanController extends Controller
         $fileName = 'export-peminjaman-' . Date::now()->format('Y-m-d_H-i-s') . '.pdf';
         
         return $pdf->download($fileName);
+    }
+
+    public function exportExcel()
+    {
+        return (new PeminjamanExport)->download('peminjaman-'.Carbon::now()->timestamp.'.xlsx');
     }
 }

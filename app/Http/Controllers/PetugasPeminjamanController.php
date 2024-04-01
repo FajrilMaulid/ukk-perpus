@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Buku;
 use App\Models\User;
 use App\Models\Koleksi;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\PeminjamanExport;
 use Illuminate\Support\Facades\Date;
 
 class PetugasPeminjamanController extends Controller
@@ -79,5 +81,10 @@ class PetugasPeminjamanController extends Controller
         $fileName = 'export-peminjaman-' . Date::now()->format('Y-m-d_H-i-s') . '.pdf';
         
         return $pdf->download($fileName);
+    }
+
+    public function exportExcel()
+    {
+        return (new PeminjamanExport)->download('peminjaman-'.Carbon::now()->timestamp.'.xlsx');
     }
 }

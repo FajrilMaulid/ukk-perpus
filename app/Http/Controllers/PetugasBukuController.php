@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Buku;
 use App\Models\Kategori;
+use App\Exports\BukuExport;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -141,6 +143,11 @@ class PetugasBukuController extends Controller
         $fileName = 'export-buku-' . Date::now()->format('Y-m-d_H-i-s') . '.pdf';
         
         return $pdf->download($fileName);
+    }
+
+    public function exportExcel()
+    {
+        return (new BukuExport)->download('buku-'.Carbon::now()->timestamp.'.xlsx');
     }
 
     /**

@@ -11,7 +11,8 @@
         @endif
     </div>
     <a href="{{ route('users.create') }}" class="btn btn-primary mb-3 mt-3 mx-2">Tambah User</a>
-    <a href="{{ route('users.exportPdf') }}" class="btn btn-danger mb-3 mt-3">Export Data</a>
+    <a href="{{ route('users.exportPdf') }}" class="btn btn-danger mb-3 mt-3 mx-2">Export PDF</a>
+    <a href="{{ route('users.exportExcel') }}" class="btn btn-success mb-3 mt-3 mx-2">Export Excel</a>
     <div class="col-12">
         <div class="card">
             <div class="card-header">

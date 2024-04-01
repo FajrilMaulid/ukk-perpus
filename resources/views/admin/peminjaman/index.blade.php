@@ -5,7 +5,8 @@
     <div class="container pt-3">
         <div class="col-12">    
             <a href="{{ route('admin.peminjaman.create') }}" class="btn btn-primary mb-3">Tambah Peminjaman</a>
-            <a href="{{ route('admin.peminjaman.exportPdf') }}" class="btn btn-danger mb-3">Export Data</a>
+            <a href="{{ route('admin.peminjaman.exportPdf') }}" class="btn btn-danger mb-3">Export PDF</a>
+            <a href="{{ route('admin.peminjaman.exportExcel') }}" class="btn btn-success mb-3">Export Excel</a>
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Daftar Peminjaman</h3>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
+use App\Exports\UserExport;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Date;
@@ -123,6 +125,11 @@ class UserController extends Controller
         $fileName = 'export-user-' . Date::now()->format('Y-m-d_H-i-s') . '.pdf';
         
         return $pdf->download($fileName);
+    }
+
+    public function exportExcel()
+    {
+        return (new UserExport)->download('user-'.Carbon::now()->timestamp.'.xlsx');
     }
 
     /**
