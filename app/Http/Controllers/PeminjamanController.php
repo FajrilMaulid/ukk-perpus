@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Buku;
 use App\Models\Ulasan;
 use App\Models\Koleksi;
@@ -69,7 +70,14 @@ class PeminjamanController extends Controller
             'rating' => $request->input('rating'),
         ];
 
+        // Periksa apakah tanggal pengembalian sudah melewati batas
+        $batasWaktuPengembalian = Carbon::parse($peminjaman->tanggal_pengembalian);
+        $sekarang = Carbon::now();
 
+        if ($sekarang->gt($batasWaktuPengembalian)) {
+            // Jika melewati batas waktu, berikan peringatan
+            return redirect()->back()->with('warning', 'Anda telah melewati batas waktu pengembalian buku.');
+        }
 
         Ulasan::create($ulasanBukuData);
 

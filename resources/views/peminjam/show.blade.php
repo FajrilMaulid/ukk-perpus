@@ -13,7 +13,7 @@
                 <div class="alert alert-danger">
                     {{ session('error') }}
                 </div>
-                @endif
+            @endif
         </div>
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
@@ -44,13 +44,26 @@
                             @endif
                         @endfor
                     </div>
-                    <form action="{{ route('peminjam.buku', ['id' => $buku->id]) }}" method="POST" class="d-flex">
-                        @csrf
-                        <button class="btn btn-outline-dark flex-shrink-0 btn-lg mt-3" type="submit">
-                            <i class="bi bi-book-half"></i>
-                            Pinjam
-                        </button>
-                    </form>
+                    @auth
+                        @php
+                            $role = auth()->user()->role;
+                        @endphp
+
+                        @if($role == 'peminjam')
+                            <form action="{{ route('peminjam.buku', ['id' => $buku->id]) }}" method="POST" class="d-flex">
+                                @csrf
+                                <button class="btn btn-outline-dark flex-shrink-0 btn-lg mt-3" type="submit">
+                                    <i class="bi bi-book-half"></i>
+                                    Pinjam
+                                </button>
+                            </form>
+                        @elseif($role == 'admin' || $role == 'petugas')
+                            <button class="btn btn-outline-dark flex-shrink-0 btn-lg mt-3" type="button" disabled>
+                                <i class="bi bi-book-half"></i>
+                                Pinjam
+                            </button>
+                        @endif
+                    @endauth
                 </div>
                 <div class="container m-5 ">
                     <!-- Daftar komentar yang sudah ada -->

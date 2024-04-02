@@ -37,8 +37,6 @@ Route::get('/search/books', [DashboardController::class, 'searchBooks'])->name('
 
 Route::get('/show/{id}', [DashboardController::class, 'show'])->name('peminjam.show');
 
-Route::post('/pinjam/{id}', [PeminjamanController::class, 'pinjamBuku'])->name('peminjam.buku');
-
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -130,17 +128,20 @@ Route::middleware(['auth', 'useRole:petugas'])->group(function () {
     Route::delete('/petugas/ulasan/{id}', [PetugasUlasanController::class, 'destroy'])->name('petugas.ulasan.destroy');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'useRole:peminjam'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.index');
     Route::post('/profile/upload-photo', [ProfileController::class, 'uploadPhoto'])->name('profile.upload-photo');
     Route::put('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
+    Route::post('/pinjam/{id}', [PeminjamanController::class, 'pinjamBuku'])->name('peminjam.buku');
     Route::post('/pengembalian/{id}', [PeminjamanController::class, 'kembalikanBuku'])->name('pengembalian.buku');
     Route::get('/koleksi', [KoleksiController::class, 'index'])->name('koleksi.index');
+});
+
+Route::middleware(['auth'])->group(function () {
     Route::post('/add/comment/{id}', [DashboardController::class, 'addComment'])->name('add.comment');
     Route::get('/comment/{id}/edit', [DashboardController::class, 'editComment'])->name('comment.edit');
     Route::put('/comment/{id}/update', [DashboardController::class, 'updateComment'])->name('comment.update');
     Route::delete('/comment/{id}/delete', [DashboardController::class, 'deleteComment'])->name('comment.delete');
 });
-
 
 
