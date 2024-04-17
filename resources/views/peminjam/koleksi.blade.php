@@ -123,11 +123,13 @@
 </style>
 
 <section class="py-2">
-    @if (session('warning'))
-        <div class="alert alert-warning">
-            {{ session('warning') }}
-        </div>
-    @endif
+    <div class="pt-2 mx-5">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+    </div>
     <div class="container">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 mt-5">
             @forelse($collection->sortByDesc('created_at') as $item)

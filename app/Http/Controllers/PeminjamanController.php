@@ -9,6 +9,7 @@ use App\Models\Koleksi;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class PeminjamanController extends Controller
 {
@@ -70,18 +71,9 @@ class PeminjamanController extends Controller
             'rating' => $request->input('rating'),
         ];
 
-        // Periksa apakah tanggal pengembalian sudah melewati batas
-        $batasWaktuPengembalian = Carbon::parse($peminjaman->tanggal_pengembalian);
-        $sekarang = Carbon::now();
-
-        if ($sekarang->gt($batasWaktuPengembalian)) {
-            // Jika melewati batas waktu, berikan peringatan
-            return redirect()->back()->with('warning', 'Anda telah melewati batas waktu pengembalian buku.');
-        }
-
         Ulasan::create($ulasanBukuData);
 
-        // Redirect kembali dengan pesan sukses
+        // Redirect kembali
         return redirect()->back()->with('success', 'Buku telah dikembalikan.');
     }
 }
