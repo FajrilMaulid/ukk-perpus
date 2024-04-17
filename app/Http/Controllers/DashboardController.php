@@ -49,16 +49,17 @@ class DashboardController extends Controller
         return view('peminjam.dashboard', compact('buku'));
     }
 
-    public function show($id)
-    {
-        $user = Auth::user();
-        $buku = Buku::findOrfail($id);
-        $kategori = Kategori::all();
+    public function show($slug)
+{
+    $user = Auth::user();
+    $buku = Buku::where('slug', $slug)->firstOrFail();
+    $kategori = Kategori::all();
 
-        $ulasan = $buku->ulasan;
+    $ulasan = $buku->ulasan;
 
-        return view('peminjam.show', compact('buku', 'kategori', 'ulasan'));
-    }
+    return view('peminjam.show', compact('buku', 'kategori', 'ulasan'));
+}
+
 
     public function addComment(Request $request, $id)
     {

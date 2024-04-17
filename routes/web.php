@@ -35,7 +35,8 @@ Route::get('/books/{category}', [DashboardController::class, 'showBooksByCategor
 
 Route::get('/search/books', [DashboardController::class, 'searchBooks'])->name('search.books');
 
-Route::get('/show/{id}', [DashboardController::class, 'show'])->name('peminjam.show');
+Route::get('/show/{slug}', [DashboardController::class, 'show'])->name('peminjam.show');
+
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
 
