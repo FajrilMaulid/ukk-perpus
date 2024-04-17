@@ -201,9 +201,15 @@
                                         <input type="radio" id="star1_{{ $item->id }}" class="rate" name="rating" value="1"/>
                                         <label for="star1_{{ $item->id }}" title="1 star">1 star</label>
                                     </div>
+                                    @error('rating')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 </div>
                                 <div class="form-group">
                                     <textarea class="form-control" name="comment" rows="6" placeholder="Comment" maxlength="200"></textarea>
+                                    @error('comment')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="mt-3 text-right">
                                     <button type="submit" class="btn btn-success">Pengembalian</button>

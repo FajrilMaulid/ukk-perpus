@@ -54,26 +54,33 @@ class PeminjamanController extends Controller
     }
 
     public function kembalikanBuku($id, Request $request)
-    {
-        $peminjaman = Peminjaman::findOrFail($id);
+{
+    // Validasi input
+    $request->validate([
+        'comment' => 'required|max:200', // Komentar harus ada dan maksimal 200 karakter
+        'rating' => 'required|integer|between:1,5', // Rating harus ada, berupa angka bulat, dan di antara 1 dan 5
+    ]);
 
-        // Perbarui TanggalPengembalian dan StatusPeminjaman
-        $peminjaman->update([
-            'tanggal_pengembalian' => now(),
-            'status_peminjaman' => 'Dikembalikan',
-        ]);
+    $peminjaman = Peminjaman::findOrFail($id);
 
-        // Tambahkan ulasan dan rating
-        $ulasanBukuData = [
-            'user_id' => auth()->user()->id,
-            'buku_id' => $peminjaman->buku_id,
-            'ulasan' => $request->input('comment'),
-            'rating' => $request->input('rating'),
-        ];
+    // Perbarui TanggalPengembalian dan StatusPeminjaman
+    $peminjaman->update([
+        'tanggal_pengembalian' => now(),
+        'status_peminjaman' => 'Dikembalikan',
+    ]);
 
-        Ulasan::create($ulasanBukuData);
+    // Tambahkan ulasan dan rating
+    $ulasanBukuData = [
+        'user_id' => auth()->user()->id,
+        'buku_id' => $peminjaman->buku_id,
+        'ulasan' => $request->input('comment'),
+        'rating' => $request->input('rating'),
+    ];
 
-        // Redirect kembali
-        return redirect()->back()->with('success', 'Buku telah dikembalikan.');
-    }
+    Ulasan::create($ulasanBukuData);
+
+    // Redirect kembali
+    return redirect()->back()->with('success', 'Buku telah dikembalikan.');
+}
+
 }
