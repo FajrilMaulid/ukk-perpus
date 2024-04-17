@@ -1,9 +1,11 @@
 <?php
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Buku;
+use Illuminate\Support\Str;
+
 class BukuSeeder extends Seeder
 {
     /**
@@ -13,32 +15,34 @@ class BukuSeeder extends Seeder
      */
     public function run()
     {
-        // Data yang ingin Anda tambahkan ke tabel buku
-        $data = [
+        // Data buku yang akan di-seed
+        $bukuData = [
             [
                 'judul' => 'Judul Buku Pertama',
-                'sampul' => 'sampul_buku_pertama.jpg',
-                'penulis' => 'Penulis Pertama',
-                'penerbit' => 'Penerbit Pertama',
+                'sampul' => 'sampul1.jpg',
+                'penulis' => 'Penulis A',
+                'penerbit' => 'Penerbit X',
                 'tahun_terbit' => 2020,
-                'kategori_id' => 1, // Ganti dengan ID kategori yang sesuai
-                'created_at' => now(),
-                'updated_at' => now(),
+                'kategori_id' => 1,
             ],
             [
                 'judul' => 'Judul Buku Kedua',
-                'sampul' => 'sampul_buku_kedua.jpg',
-                'penulis' => 'Penulis Kedua',
-                'penerbit' => 'Penerbit Kedua',
+                'sampul' => 'sampul2.jpg',
+                'penulis' => 'Penulis B',
+                'penerbit' => 'Penerbit Y',
                 'tahun_terbit' => 2021,
-                'kategori_id' => 2, // Ganti dengan ID kategori yang sesuai
-                'created_at' => now(),
-                'updated_at' => now(),
+                'kategori_id' => 2,
             ],
-            // Tambahkan data lainnya sesuai kebutuhan
+            // Tambahkan data buku lainnya di sini
         ];
 
-        // Insert data ke tabel buku
-        DB::table('buku')->insert($data);
+        // Loop untuk menambahkan data buku
+        foreach ($bukuData as $data) {
+            // Menambahkan slug berdasarkan judul buku
+            $data['slug'] = Str::slug($data['judul']);
+
+            // Menyimpan data buku ke dalam database
+            Buku::create($data);
+        }
     }
 }

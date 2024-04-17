@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('sampul');
             $table->string('penulis');
             $table->string('penerbit');
+            $table->string('slug')->unique();
             $table->integer('tahun_terbit');
             $table->unsignedBigInteger('kategori_id');
             $table->foreign('kategori_id')->references('id')->on('kategori')->onDelete('cascade');
