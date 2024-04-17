@@ -107,7 +107,7 @@ class DashboardController extends Controller
         $komentar->ulasan = $request->comment;
         $komentar->save();
 
-        return redirect()->route('peminjam.show', ['id' => $komentar->buku_id])->with('success', 'Komentar berhasil diperbarui!');
+        return redirect()->back()->with('success', 'Komentar berhasil diperbarui!');
     }
 
     public function deleteComment($id)
@@ -122,7 +122,7 @@ class DashboardController extends Controller
         $buku_id = $komentar->buku_id;
         $komentar->delete();
 
-        return redirect()->route('peminjam.show', ['id' => $buku_id])->with('success', 'Komentar berhasil dihapus!');
+        return redirect()->back()->with('success', 'Komentar berhasil dihapus!');
     }
 
 }
