@@ -9,7 +9,6 @@ use App\Models\Koleksi;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class PeminjamanController extends Controller
 {
@@ -54,33 +53,33 @@ class PeminjamanController extends Controller
     }
 
     public function kembalikanBuku($id, Request $request)
-{
-    // Validasi input
-    $request->validate([
-        'comment' => 'required|max:200', // Komentar harus ada dan maksimal 200 karakter
-        'rating' => 'required|integer|between:1,5', // Rating harus ada, berupa angka bulat, dan di antara 1 dan 5
-    ]);
+    {
+        // Validasi input
+        $request->validate([
+            'comment' => 'required|max:200', // Komentar harus ada dan maksimal 200 karakter
+            'rating' => 'required|integer|between:1,5', // Rating harus ada, berupa angka bulat, dan di antara 1 dan 5
+        ]);
 
-    $peminjaman = Peminjaman::findOrFail($id);
+        $peminjaman = Peminjaman::findOrFail($id);
 
-    // Perbarui TanggalPengembalian dan StatusPeminjaman
-    $peminjaman->update([
-        'tanggal_pengembalian' => now(),
-        'status_peminjaman' => 'Dikembalikan',
-    ]);
+        // Perbarui TanggalPengembalian dan StatusPeminjaman
+        $peminjaman->update([
+            'tanggal_pengembalian' => now(),
+            'status_peminjaman' => 'Dikembalikan',
+        ]);
 
-    // Tambahkan ulasan dan rating
-    $ulasanBukuData = [
-        'user_id' => auth()->user()->id,
-        'buku_id' => $peminjaman->buku_id,
-        'ulasan' => $request->input('comment'),
-        'rating' => $request->input('rating'),
-    ];
+        // Tambahkan ulasan dan rating
+        $ulasanBukuData = [
+            'user_id' => auth()->user()->id,
+            'buku_id' => $peminjaman->buku_id,
+            'ulasan' => $request->input('comment'),
+            'rating' => $request->input('rating'),
+        ];
 
-    Ulasan::create($ulasanBukuData);
+        Ulasan::create($ulasanBukuData);
 
-    // Redirect kembali
-    return redirect()->back()->with('success', 'Buku telah dikembalikan.');
-}
+        // Redirect kembali
+        return redirect()->back()->with('success', 'Buku telah dikembalikan.');
+    }
 
 }

@@ -188,6 +188,12 @@
                             <form action="{{ route('pengembalian.buku', ['id' => $item->peminjaman->id]) }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="booking_id" value="{{ $item->peminjaman->id }}">
+                                @error('comment')
+                                        <div class="alert alert-danger">Berikan ulasan terlebih dahulu</div>
+                                @enderror
+                                @error('rating')
+                                    <div class="alert alert-danger">Berikan rating terlebih dahulu</div>
+                                @enderror
                                 <div class="form-group">
                                     <div class="rate">
                                         <input type="radio" id="star5_{{ $item->id }}" class="rate" name="rating" value="5"/>
@@ -201,18 +207,12 @@
                                         <input type="radio" id="star1_{{ $item->id }}" class="rate" name="rating" value="1"/>
                                         <label for="star1_{{ $item->id }}" title="1 star">1 star</label>
                                     </div>
-                                    @error('rating')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
                                 </div>
                                 <div class="form-group">
                                     <textarea class="form-control" name="comment" rows="6" placeholder="Comment" maxlength="200"></textarea>
-                                    @error('comment')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
                                 </div>
                                 <div class="mt-3 text-right">
-                                    <button type="submit" class="btn btn-success">Pengembalian</button>
+                                    <button type="submit" class="btn btn-success">Kembalikan Buku</button>
                                 </div>
                             </form>
                             @else

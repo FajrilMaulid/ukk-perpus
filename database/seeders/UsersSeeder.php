@@ -18,7 +18,7 @@ class UsersSeeder extends Seeder
             [
                 'username' => 'admin',
                 'password' => Hash::make('admin123'), // Anda dapat mengganti password sesuai kebutuhan
-                'email' => 'admin@example.com',
+                'email' => 'admin@gmail.com',
                 'name_lengkap' => 'Admin',
                 'alamat' => 'Alamat Admin',
                 'role' => 'admin',
@@ -28,7 +28,7 @@ class UsersSeeder extends Seeder
             [
                 'username' => 'petugas',
                 'password' => Hash::make('petugas123'), // Anda dapat mengganti password sesuai kebutuhan
-                'email' => 'petugas@example.com',
+                'email' => 'petugas@gmail.com',
                 'name_lengkap' => 'Petugas',
                 'alamat' => 'Alamat Petugas',
                 'role' => 'petugas',
@@ -38,7 +38,7 @@ class UsersSeeder extends Seeder
             [
                 'username' => 'peminjam',
                 'password' => Hash::make('peminjam123'), // Anda dapat mengganti password sesuai kebutuhan
-                'email' => 'peminjam@example.com',
+                'email' => 'peminjam@gmail.com',
                 'name_lengkap' => 'Peminjam',
                 'alamat' => 'Alamat Peminjam',
                 'role' => 'peminjam',

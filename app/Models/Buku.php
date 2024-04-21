@@ -11,7 +11,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class Buku extends Model
 {
     use HasFactory;
-     use Sluggable;
+    use Sluggable;
     protected $table = "buku";
     protected $fillable = ['judul','sampul','penulis','penerbit','tahun_terbit','kategori_id','slug'];
 

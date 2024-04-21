@@ -111,6 +111,9 @@ class PetugasBukuController extends Controller
             $buku->sampul = $filename;
         }
 
+        // Atur slug baru
+        $buku->slug = Str::slug($request->judul);
+
         $buku->save();
 
         return redirect()->route('petugas.buku.index')->with('success', 'Buku berhasil diperbarui.');

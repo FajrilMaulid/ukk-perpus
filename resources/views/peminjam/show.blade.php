@@ -58,10 +58,6 @@
                                 </button>
                             </form>
                         @elseif($role == 'admin' || $role == 'petugas')
-                            <button class="btn btn-outline-dark flex-shrink-0 btn-lg mt-3" type="button" disabled>
-                                <i class="bi bi-book-half"></i>
-                                Pinjam
-                            </button>
                         @endif
                     @endauth
                 </div>
