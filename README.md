@@ -1,6 +1,6 @@
 ##  Konsep Dari Web Yang Saya Buat
 
-Website yang saya buat ini merupaka sebuah perpustakaan digital yang memiliki penampilan yang minimalis.
+Website yang saya buat ini merupakan sebuah perpustakaan digital yang memiliki penampilan yang minimalis.
 
 ## Fitur Yang Tersedia
 
