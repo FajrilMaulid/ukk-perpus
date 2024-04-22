@@ -56,10 +56,14 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <form action="{{ route('admin.peminjaman.tolak', $item->id) }}" method="POST" style="display: inline;">
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menolak peminjaman?')">Tolak</button>
-                                        </form>
+                                        @if ($item->status_peminjaman == 'Dipinjam' || $item->status_peminjaman == 'Dikembalikan')
+                                            <form action="{{ route('admin.peminjaman.tolak', $item->id) }}" method="POST" style="display: inline;">
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menolak peminjaman?')">Tolak</button>
+                                            </form>
+                                        @elseif ($item->status_peminjaman == 'Ditolak')
+                                            <button class="btn btn-danger btn-sm" style="hidden">Sudah Di tolak</button>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
