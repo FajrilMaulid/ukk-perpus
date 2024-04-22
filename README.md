@@ -106,7 +106,7 @@ php artisan migrate --seed
 php artisan serve
 ```
 
-<p>ukk perpus dibuat oleh Fajril Maulid</p>
+<p><b>UKK perpus dibuat oleh <a href="https://www.instagram.com/f.merlin_">Fajril Maulid</a></b></p>
 
 
 
