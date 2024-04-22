@@ -37,7 +37,6 @@ Route::get('/search/books', [DashboardController::class, 'searchBooks'])->name('
 
 Route::get('/show/{slug}', [DashboardController::class, 'show'])->name('peminjam.show');
 
-
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -51,47 +50,48 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::middleware(['auth', 'useRole:admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'showAdminForm'])->name('admin.dashboard');
 
-    Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
-    Route::get('/kategori/search', [KategoriController::class, 'search'])->name('kategori.search');
-    Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
-    Route::post('/kategori', [KategoriController::class, 'store'])->name('kategori.store');
-    Route::get('/kategori/{id}', [KategoriController::class, 'show'])->name('kategori.show');
-    Route::get('/kategori/{id}/edit', [KategoriController::class, 'edit'])->name('kategori.edit');
-    Route::put('/kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
-    Route::delete('/kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
+    Route::get('/admin/kategori', [KategoriController::class, 'index'])->name('kategori.index');
+    Route::get('/admin/kategori/search', [KategoriController::class, 'search'])->name('kategori.search');
+    Route::get('/admin/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
+    Route::post('/admin/kategori', [KategoriController::class, 'store'])->name('kategori.store');
+    Route::get('/admin/kategori/{id}', [KategoriController::class, 'show'])->name('kategori.show');
+    Route::get('/admin/kategori/{id}/edit', [KategoriController::class, 'edit'])->name('kategori.edit');
+    Route::put('/admin/kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+    Route::delete('/admin/kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
 
-    Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
-    Route::get('/buku/search', [BukuController::class, 'search'])->name('buku.search');
-    Route::get('/buku/export-pdf', [BukuController::class, 'exportPdf'])->name('buku.exportPdf');
-    Route::get('/buku/export-excel', [BukuController::class, 'exportExcel'])->name('buku.exportExcel');
-    Route::get('/buku/create', [BukuController::class, 'create'])->name('buku.create');
-    Route::post('/buku', [BukuController::class, 'store'])->name('buku.store');
-    Route::get('/buku/{id}/edit', [BukuController::class, 'edit'])->name('buku.edit');
-    Route::put('/buku/{id}', [BukuController::class, 'update'])->name('buku.update');
-    Route::get('/buku/{id}/remove-sampul', [BukuController::class, 'removeSampul'])->name('buku.remove_sampul');
-    Route::delete('/buku/{id}', [BukuController::class, 'destroy'])->name('buku.destroy');
+    Route::get('/admin/buku', [BukuController::class, 'index'])->name('buku.index');
+    Route::get('/admin/buku/search', [BukuController::class, 'search'])->name('buku.search');
+    Route::get('/admin/buku/export-pdf', [BukuController::class, 'exportPdf'])->name('buku.exportPdf');
+    Route::get('/admin/buku/export-excel', [BukuController::class, 'exportExcel'])->name('buku.exportExcel');
+    Route::get('/admin/buku/create', [BukuController::class, 'create'])->name('buku.create');
+    Route::post('/admin/buku', [BukuController::class, 'store'])->name('buku.store');
+    Route::get('/admin/buku/{id}/edit', [BukuController::class, 'edit'])->name('buku.edit');
+    Route::put('/admin/buku/{id}', [BukuController::class, 'update'])->name('buku.update');
+    Route::get('/admin/buku/{id}/remove-sampul', [BukuController::class, 'removeSampul'])->name('buku.remove_sampul');
+    Route::delete('/admin/buku/{id}', [BukuController::class, 'destroy'])->name('buku.destroy');
 
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
-    Route::get('/users/export-pdf', [UserController::class, 'exportPdf'])->name('users.exportPdf');
-    Route::get('/users/export-excel', [UserController::class, 'exportExcel'])->name('users.exportExcel');
-    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-    Route::post('/users', [UserController::class, 'store'])->name('users.store');
-    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
-    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
-    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/admin/users/search', [UserController::class, 'search'])->name('users.search');
+    Route::get('/admin/users/export-pdf', [UserController::class, 'exportPdf'])->name('users.exportPdf');
+    Route::get('/admin/users/export-excel', [UserController::class, 'exportExcel'])->name('users.exportExcel');
+    Route::get('/admin/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/admin/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/admin/users/{id}', [UserController::class, 'show'])->name('users.show');
+    Route::get('/admin/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/admin/users/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
-    Route::get('/peminjaman/create', [AdminPeminjamanController::class, 'createPeminjamanForm'])->name('admin.peminjaman.create');
-    Route::post('/peminjaman/create', [AdminPeminjamanController::class, 'createPeminjaman'])->name('admin.peminjaman.store');
-    Route::get('/peminjaman', [AdminPeminjamanController::class, 'index'])->name('admin.peminjaman.index');
-    Route::get('/peminjaman/export-pdf', [AdminPeminjamanController::class, 'exportPdf'])->name('admin.peminjaman.exportPdf');
-    Route::get('/peminjaman/export-excel', [AdminPeminjamanController::class, 'exportExcel'])->name('admin.peminjaman.exportExcel');
-    Route::get('/peminjaman/search', [AdminPeminjamanController::class, 'search'])->name('admin.peminjaman.search');
-    Route::get('/ulasan', [UlasanController::class, 'index'])->name('ulasan.index');
-    Route::get('/ulasan/export-pdf', [UlasanController::class, 'exportPdf'])->name('ulasan.exportPdf');
-    Route::get('/ulasan/export-excel', [UlasanController::class, 'exportExcel'])->name('ulasan.exportExcel');
-    Route::delete('/ulasan/{id}', [UlasanController::class, 'destroy'])->name('ulasan.destroy');
+    Route::get('/admin/peminjaman/create', [AdminPeminjamanController::class, 'createPeminjamanForm'])->name('admin.peminjaman.create');
+    Route::post('/admin/peminjaman/create', [AdminPeminjamanController::class, 'createPeminjaman'])->name('admin.peminjaman.store');
+    Route::get('/admin/peminjaman', [AdminPeminjamanController::class, 'index'])->name('admin.peminjaman.index');
+    Route::get('/admin/peminjaman/export-pdf', [AdminPeminjamanController::class, 'exportPdf'])->name('admin.peminjaman.exportPdf');
+    Route::get('/admin/peminjaman/export-excel', [AdminPeminjamanController::class, 'exportExcel'])->name('admin.peminjaman.exportExcel');
+    Route::get('/admin/peminjaman/search', [AdminPeminjamanController::class, 'search'])->name('admin.peminjaman.search');
+    Route::post('/admin/peminjaman/{id}', [AdminPeminjamanController::class, 'tolakbuku'])->name('admin.peminjaman.tolak');
+    Route::get('/admin/ulasan', [UlasanController::class, 'index'])->name('ulasan.index');
+    Route::get('/admin/ulasan/export-pdf', [UlasanController::class, 'exportPdf'])->name('ulasan.exportPdf');
+    Route::get('/admin/ulasan/export-excel', [UlasanController::class, 'exportExcel'])->name('ulasan.exportExcel');
+    Route::delete('/admin/ulasan/{id}', [UlasanController::class, 'destroy'])->name('ulasan.destroy');
 });
 
 Route::middleware(['auth', 'useRole:petugas'])->group(function () {
@@ -123,6 +123,7 @@ Route::middleware(['auth', 'useRole:petugas'])->group(function () {
     Route::get('/petugas/peminjaman/export-pdf', [PetugasPeminjamanController::class, 'exportPdf'])->name('petugas.peminjaman.exportPdf');
     Route::get('/petugas/peminjaman/export-excel', [PetugasPeminjamanController::class, 'exportExcel'])->name('petugas.peminjaman.exportExcel');
     Route::get('/petugas/peminjaman/search', [PetugasPeminjamanController::class, 'search'])->name('petugas.peminjaman.search');
+    Route::post('/petugas/peminjaman/{id}', [PetugtasPeminjamanController::class, 'tolakbuku'])->name('petugas.peminjaman.tolak');
     Route::get('/petugas/ulasan', [PetugasUlasanController::class, 'index'])->name('petugas.ulasan.index');
     Route::get('/petugas/ulasan/export-pdf', [PetugasUlasanController::class, 'exportPdf'])->name('petugas.ulasan.exportPdf');
     Route::get('/petugas/ulasan/export-excel', [PetugasUlasanController::class, 'exportExcel'])->name('petugas.ulasan.exportExcel');

@@ -57,7 +57,7 @@ class PetugasPeminjamanController extends Controller
     {
         $query = $request->input('q');
         $peminjaman = Peminjaman::where('status_peminjaman', 'LIKE', "%$query%")->paginate(10);
-        
+
         if ($peminjaman->isEmpty()) {
             return redirect()->route('petugas.peminjaman.index')->with('error', 'User tidak ditemukan.');
         }
@@ -74,17 +74,31 @@ class PetugasPeminjamanController extends Controller
     }
 
     public function exportPdf()
-    {        
+    {
         $peminjaman = Peminjaman::all();
         $pdf = Pdf::loadView('pdf.export-peminjaman', ['peminjaman' => $peminjaman])->setOption(['defaultFont' => 'sans-serif']);
         // Membuat nama file PDF dengan waktu saat ini
         $fileName = 'export-peminjaman-' . Date::now()->format('Y-m-d_H-i-s') . '.pdf';
-        
+
         return $pdf->download($fileName);
     }
 
     public function exportExcel()
     {
         return (new PeminjamanExport)->download('peminjaman-'.Carbon::now()->timestamp.'.xlsx');
+    }
+
+    public function tolakbuku($id, Request $request)
+    {
+
+        $peminjaman = Peminjaman::findOrFail($id);
+
+        // StatusPeminjaman
+        $peminjaman->update([
+            'status_peminjaman' => 'Ditolak',
+        ]);
+
+        // Redirect kembali
+        return redirect()->back()->with('success', 'Buku telah ditolak');
     }
 }

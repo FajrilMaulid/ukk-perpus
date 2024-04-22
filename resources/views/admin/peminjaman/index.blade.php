@@ -3,7 +3,7 @@
 @section('content')
 <section class="content pt-3">
     <div class="container pt-3">
-        <div class="col-12">    
+        <div class="col-12">
             <a href="{{ route('admin.peminjaman.create') }}" class="btn btn-primary mb-3">Tambah Peminjaman</a>
             <a href="{{ route('admin.peminjaman.exportPdf') }}" class="btn btn-danger mb-3">Export PDF</a>
             <a href="{{ route('admin.peminjaman.exportExcel') }}" class="btn btn-success mb-3">Export Excel</a>
@@ -30,6 +30,7 @@
                                 <th>Tanggal Peminjaman</th>
                                 <th>Tanggal Pengembalian</th>
                                 <th>Status Peminjaman</th>
+                                <th>Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,7 +50,17 @@
                                             <div class="alert alert-success" role="alert">
                                                 Dikembalikan
                                             </div>
+                                        @elseif ($item->status_peminjaman == 'Ditolak')
+                                            <div class="alert alert-danger" role="alert">
+                                                Ditolak
+                                            </div>
                                         @endif
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('admin.peminjaman.tolak', $item->id) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menolak peminjaman?')">Tolak</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

@@ -215,12 +215,18 @@
                                     <button type="submit" class="btn btn-success">Kembalikan Buku</button>
                                 </div>
                             </form>
-                            @else
+                            @elseif ($item->peminjaman->status_peminjaman == 'Dikembalikan')
                             <!-- Informasi peminjaman -->
                             <p class="card-text"><strong>Tanggal Peminjaman:</strong>
                                 {{ date('d-m-Y', strtotime($item->peminjaman->tanggal_peminjaman)) }}</p>
                             <p class="card-text"><strong>Tanggal Pengembalian:</strong>
                                 {{ date('d-m-Y', strtotime($item->peminjaman->tanggal_pengembalian)) }}</p>
+                            <button class="btn btn-outline-dark flex-shrink-0 btn-lg" type="button"
+                                data-bs-dismiss="modal">
+                                Tutup
+                            </button>
+                            @elseif ($item->peminjaman->status_peminjaman == 'Ditolak')
+                            <div class="mt-2 alert alert-danger">Buku yang anda pinjam ditolak oleh admin</div>
                             <button class="btn btn-outline-dark flex-shrink-0 btn-lg" type="button"
                                 data-bs-dismiss="modal">
                                 Tutup

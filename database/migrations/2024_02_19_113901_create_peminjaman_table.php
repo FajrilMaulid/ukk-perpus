@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('buku_id')->references('id')->on('buku')->onDelete('cascade')->onUpdate('cascade');
             $table->date('tanggal_peminjaman');
             $table->date('tanggal_pengembalian');
-            $table->enum('status_peminjaman', ['Dipinjam','Dikembalikan']);
+            $table->enum('status_peminjaman', ['Dipinjam','Dikembalikan','Ditolak']);
             $table->timestamps();
         });
     }

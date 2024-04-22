@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/peminjaman') }}" class="nav-link">
+                    <a href="{{ url('/admin/peminjaman') }}" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Peminjaman
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/ulasan') }}" class="nav-link">
+                    <a href="{{ url('/admin/ulasan') }}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Ulasan
@@ -69,19 +69,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('/buku') }}" class="nav-link">
+                            <a href="{{ url('/admin/buku') }}" class="nav-link">
                                 <i class="fas fa-book nav-icon"></i>
                                 <p>Buku</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/kategori') }}" class="nav-link">
+                            <a href="{{ url('/admin/kategori') }}" class="nav-link">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Kategori</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/users') }}" class="nav-link">
+                            <a href="{{ url('/admin/users') }}" class="nav-link">
                                 <i class="fas fa-user nav-icon"></i>
                                 <p>Users</p>
                             </a>
