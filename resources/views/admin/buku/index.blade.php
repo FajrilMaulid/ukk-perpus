@@ -26,7 +26,7 @@
     <a href="{{ route('buku.create') }}" class="btn btn-primary mb-3 mt-3 mx-2">Tambah Buku</a>
     <a href="{{ route('buku.exportPdf') }}" class="btn btn-danger mb-3 mt-3 mx-2">Export PDF</a>
     <a href="{{ route('buku.exportExcel') }}" class="btn btn-success mb-3 mt-3 mx-2">Export Excel</a>
-    <div class="col-12">    
+    <div class="col-12">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Data Buku</h3>
@@ -65,7 +65,7 @@
                             <td>{{ $item->tahun_terbit }}</td>
                             <td>{{ $item->kategori->nama_kategori }}</td>
                             <td>
-                                <a href="{{ route('peminjam.show', $item->id) }}" class="btn btn-sm btn-primary">Lihat</a>
+                                <a href="{{ route('peminjam.show', $item->slug) }}" class="btn btn-sm btn-primary">Lihat</a>
                                 <a href="{{ route('buku.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <form action="{{ route('buku.destroy', $item->id) }}" method="POST" style="display: inline;">
                                     @csrf

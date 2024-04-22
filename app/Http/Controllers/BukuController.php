@@ -61,7 +61,7 @@ class BukuController extends Controller
         ]);
         $buku->save();
 
-        return redirect('/buku')->with('success', 'Buku berhasil ditambahkan');
+        return redirect('/admin/buku')->with('success', 'Buku berhasil ditambahkan');
     }
 
     /**
@@ -69,7 +69,7 @@ class BukuController extends Controller
      */
     public function show()
     {
-        
+
     }
 
     /**
@@ -131,7 +131,7 @@ class BukuController extends Controller
                         $q->where('nama_kategori', 'LIKE', "%$query%");
                     })
                     ->paginate(10);
-        
+
         if ($buku->isEmpty()) {
             return redirect()->route('buku.index')->with('error', 'Buku tidak ditemukan.');
         }
@@ -140,12 +140,12 @@ class BukuController extends Controller
     }
 
     public function exportPdf()
-    {        
+    {
         $buku = Buku::all();
         $pdf = Pdf::loadView('pdf.export-buku', ['buku' => $buku])->setOption(['defaultFont' => 'sans-serif']);
         // Membuat nama file PDF dengan waktu saat ini
         $fileName = 'export-buku-' . Date::now()->format('Y-m-d_H-i-s') . '.pdf';
-        
+
         return $pdf->download($fileName);
     }
 
@@ -163,6 +163,6 @@ class BukuController extends Controller
         Storage::delete('public/buku/'.$buku->sampul);
         $buku->delete();
 
-        return redirect('/buku')->with('success', 'Buku berhasil dihapus');
+        return redirect('/admin/buku')->with('success', 'Buku berhasil dihapus');
     }
 }

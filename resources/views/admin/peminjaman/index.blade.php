@@ -37,7 +37,7 @@
                             @foreach ($peminjaman as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->user->name_lengkap }}</td>
+                                    <td>{{ $item->users->name_lengkap }}</td>
                                     <td>{{ $item->buku->judul }}</td>
                                     <td>{{ $item->tanggal_peminjaman }}</td>
                                     <td>{{ $item->tanggal_pengembalian }}</td>
