@@ -52,6 +52,8 @@ Website yang saya buat ini merupaka sebuah perpustakaan digital yang memiliki pe
 
 ![ERD](https://github.com/FajrilMaulid/ukk-perpus/blob/main/ERD-Web-perpus.png)
 
+##
+
 ![RAT](https://github.com/FajrilMaulid/ukk-perpus/blob/main/Relasi%20Antar%20tabel.png)
 
 Tabel Failed_Jobs, Personal_access_tokens, Password_reset_tokens, migrations diabaikan saja karena itu bawaan dari Laravel.
